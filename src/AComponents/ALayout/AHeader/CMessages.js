@@ -1,15 +1,15 @@
 import React from "react";
 import Badge from "@mui/material/Badge";
-import NotificationsIcon from "@mui/icons-material/Notifications";
+import EmailIcon from "@mui/icons-material/Email";
 
-function BNotification() {
+function CMessages() {
   return (
     <div>
       <Badge badgeContent={4} color="primary">
-        <NotificationsIcon color="action" />
+        <EmailIcon color="action" />
       </Badge>
     </div>
   );
 }
 
-export default BNotification;
+export default CMessages;

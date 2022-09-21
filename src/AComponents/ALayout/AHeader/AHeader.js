@@ -6,6 +6,8 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import BNotification from "./BNotification";
+import CMessages from "./CMessages";
+import DProfile from "./DProfile";
 
 /* MUI APPBar component with Logo,LoginButton and Notifications*/
 
@@ -21,6 +23,8 @@ export default function AHeader() {
             India Post
           </Typography>
           <BNotification />
+          <CMessages />
+          <DProfile />
           <Button color="inherit">Login</Button>
           <IconButton
             size="large"
