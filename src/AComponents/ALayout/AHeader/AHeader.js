@@ -7,11 +7,21 @@ import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import BNotification from "./BNotification";
 
+/* MUI APPBar component with Logo,LoginButton and Notifications*/
+
 export default function AHeader() {
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+      <AppBar
+        position="static"
+        style={{ background: "#3f51b5", boxShadow: "none" }}
+      >
         <Toolbar>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            India Post
+          </Typography>
+          <BNotification />
+          <Button color="inherit">Login</Button>
           <IconButton
             size="large"
             edge="start"
@@ -19,11 +29,6 @@ export default function AHeader() {
             aria-label="menu"
             sx={{ mr: 2 }}
           ></IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            India Post
-          </Typography>
-          <BNotification />
-          <Button color="inherit">Login</Button>
         </Toolbar>
       </AppBar>
     </Box>

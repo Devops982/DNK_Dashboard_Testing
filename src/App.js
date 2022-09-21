@@ -1,14 +1,18 @@
 import "./App.css";
-import "bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
 import AHeader from "./AComponents/ALayout/AHeader/AHeader";
+import ASidebar from "./AComponents/ALayout/BSideBar/ASidebar";
+import AMiddleBar from "./AComponents/ALayout/CMiddleBar/AMiddleBar";
+import { Stack } from "@mui/material";
 
 function App() {
   return (
     <div>
       <AHeader />
-      <h1>Hello, World</h1>
-      <p>I am writing JSX</p>
+      <Stack direction="row" spacing={2} justifyContent="space-evenly">
+        <ASidebar />
+        <AMiddleBar />
+      </Stack>
     </div>
   );
 }
