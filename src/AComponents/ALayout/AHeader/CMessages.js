@@ -4,11 +4,9 @@ import EmailIcon from "@mui/icons-material/Email";
 
 function CMessages() {
   return (
-    <div>
-      <Badge badgeContent={4} color="primary">
-        <EmailIcon color="action" />
-      </Badge>
-    </div>
+    <Badge badgeContent={4} color="error">
+      <EmailIcon />
+    </Badge>
   );
 }
 

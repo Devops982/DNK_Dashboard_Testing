@@ -8,33 +8,33 @@ import IconButton from "@mui/material/IconButton";
 import BNotification from "./BNotification";
 import CMessages from "./CMessages";
 import DProfile from "./DProfile";
+import ESearchBar from "./ESearchBar";
+import styled from "@emotion/styled";
+import FIconContainer from "./FIconContainer";
 
 /* MUI APPBar component with Logo,LoginButton and Notifications*/
 
+const StyledToolBar = styled(Toolbar)({
+  display: "flex",
+  justifyContent: "space-between",
+});
+
 export default function AHeader() {
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar
-        position="static"
-        style={{ background: "#3f51b5", boxShadow: "none" }}
-      >
-        <Toolbar>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            India Post
-          </Typography>
-          <BNotification />
-          <CMessages />
-          <DProfile />
-          <Button color="inherit">Login</Button>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-          ></IconButton>
-        </Toolbar>
-      </AppBar>
-    </Box>
+    <AppBar position="sticky">
+      <StyledToolBar>
+        <Typography variant="h6">India Post</Typography>
+        <ESearchBar />
+        <FIconContainer />
+        {/* <Button color="inherit">Login</Button> */}
+        {/* <IconButton
+          size="large"
+          edge="start"
+          color="inherit"
+          aria-label="menu"
+          sx={{ mr: 2 }}
+        ></IconButton> */}
+      </StyledToolBar>
+    </AppBar>
   );
 }
