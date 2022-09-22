@@ -7,11 +7,13 @@ import MuiTableHead from "@material-ui/core/TableHead";
 // import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { colors, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import EditIcon from "@mui/icons-material/Edit";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
+
+
 
 const useStyles = makeStyles({
   table: {
@@ -30,6 +32,9 @@ const TableHeaderCell = withStyles((theme) => ({
     color: "white",
   },
 }))(TableCell);
+
+/*Function Starts Here*/
+
 function BCurrencyExchangeRate() {
   const classes = useStyles();
   var axios = require("axios");
@@ -67,9 +72,11 @@ function BCurrencyExchangeRate() {
         <Table className={classes.table} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell>Curreny Name</TableCell>
-              <TableCell align="right">Indian Rupee Value</TableCell>
-              <TableCell align="right">Action</TableCell>
+              <TableCell>Curreny ID</TableCell>
+              <TableCell align="center">Currency Name</TableCell>
+              <TableCell align="center">Currency ISO Code</TableCell>
+              <TableCell align="center">Currency Exchange Rate</TableCell>
+              <TableCell align="center">Action</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -79,11 +86,12 @@ function BCurrencyExchangeRate() {
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
                 <TableCell component="th" scope="row">
-                  {post.currency}
+                  {post.id}
                 </TableCell>
-                <TableCell align="right">{post.exchangerate}</TableCell>
-                <TableCell align="right">
-                  {" "}
+                <TableCell align="center">{post.currency}</TableCell>
+                <TableCell align="center">{post.isocode}</TableCell>
+                <TableCell align="center">{post.exchangerate}</TableCell>
+                <TableCell align="center">
                   <IconButton aria-label="delete">
                     <EditIcon />
                   </IconButton>

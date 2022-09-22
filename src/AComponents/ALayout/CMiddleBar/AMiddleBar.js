@@ -1,6 +1,7 @@
 import { Box } from "@mui/material";
 import React from "react";
 import BCurrencyExchangeRate from "./BCurrencyExchangeRate";
+import CTableEdit from "./CTableEdit";
 
 function AMiddleBar() {
   return (
