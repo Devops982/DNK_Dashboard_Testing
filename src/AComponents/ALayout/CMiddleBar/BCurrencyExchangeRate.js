@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -8,22 +8,33 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { Typography } from "@mui/material";
 
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
-}
-
-const rows = [
-  createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
-  createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
-  createData("Eclair", 262, 16.0, 24, 6.0),
-  createData("Cupcake", 305, 3.7, 67, 4.3),
-  createData("Gingerbread", 356, 16.0, 49, 3.9),
-];
-
 function BCurrencyExchangeRate() {
+  var axios = require("axios");
+  var qs = require("qs");
+  var data = qs.stringify({});
+  var config = {
+    method: "get",
+    url: "https://gateway.cept.gov.in/currency/getexchangerates/0",
+    headers: {
+      "x-request-id": "123e4567-e89b-12d3-a456-426614174000",
+      "request-date": "2022-01-25T15:52:.667+00:00",
+    },
+    data: data,
+  };
+  const [currencyRates, setCurrencyRates] = useState([]);
+  useEffect(() => {
+    axios(config)
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+        setCurrencyRates(response.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }, []);
   return (
     <div>
-      <Paper> <Typography variant="h5" align="center" sx={{fontWeight: 'bold'}}>Update Currency Values</Typography></Paper>
+       <Paper> <Typography variant="h5" align="center" sx={{fontWeight: 'bold'}}>Update Currency Values</Typography></Paper>
       <TableContainer component={Paper}>
         <Table aria-label="simple table">
           <TableHead>
@@ -34,16 +45,16 @@ function BCurrencyExchangeRate() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row) => (
+            {currencyRates.map((post) => (
               <TableRow
-                key={row.name}
+                key={post.id}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
                 <TableCell component="th" scope="row">
-                  {row.name}
+                  {post.currency}
                 </TableCell>
-                <TableCell align="right">{row.calories}</TableCell>
-                <TableCell align="right">{row.fat}</TableCell>
+                <TableCell align="right">{post.exchangerate}</TableCell>
+                <TableCell align="right">Edit</TableCell>
               </TableRow>
             ))}
           </TableBody>
