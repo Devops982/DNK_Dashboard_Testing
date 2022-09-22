@@ -8,28 +8,27 @@ import MuiTableHead from "@material-ui/core/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { colors, Typography } from "@mui/material";
-import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
-import EditIcon from '@mui/icons-material/Edit';
+import Button from "@mui/material/Button";
+import IconButton from "@mui/material/IconButton";
+import EditIcon from "@mui/icons-material/Edit";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
-
 
 const useStyles = makeStyles({
   table: {
-    minWidth: 650
-  }
+    minWidth: 100,
+  },
 });
 
 const TableHead = withStyles((theme) => ({
   root: {
-    backgroundColor: "white"
-     }
+    backgroundColor: "white",
+  },
 }))(MuiTableHead);
 
 const TableHeaderCell = withStyles((theme) => ({
   root: {
-    color: "white"
-  }
+    color: "white",
+  },
 }))(TableCell);
 function BCurrencyExchangeRate() {
   const classes = useStyles();
@@ -57,12 +56,16 @@ function BCurrencyExchangeRate() {
       });
   }, []);
   return (
-    
     <div>
-       <Paper> <Typography variant="h5" align="center" sx={{fontWeight: 'bold'}}>Update Currency Values</Typography></Paper>
+      <Paper>
+        {" "}
+        <Typography variant="h5" align="center" sx={{ fontWeight: "bold" }}>
+          Update Currency Values
+        </Typography>
+      </Paper>
       <TableContainer component={Paper}>
         <Table className={classes.table} aria-label="simple table">
-          <TableHead >
+          <TableHead>
             <TableRow>
               <TableCell>Curreny Name</TableCell>
               <TableCell align="right">Indian Rupee Value</TableCell>
@@ -79,9 +82,13 @@ function BCurrencyExchangeRate() {
                   {post.currency}
                 </TableCell>
                 <TableCell align="right">{post.exchangerate}</TableCell>
-                <TableCell align="right"> <IconButton aria-label="delete">
-        <EditIcon />
-      </IconButton><Button variant="contained">Edit</Button></TableCell>
+                <TableCell align="right">
+                  {" "}
+                  <IconButton aria-label="delete">
+                    <EditIcon />
+                  </IconButton>
+                  <Button variant="contained">Edit</Button>
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
