@@ -1,13 +1,19 @@
 import { Box } from "@mui/material";
 import React from "react";
 import BCurrencyExchangeRate from "./BCurrencyExchangeRate";
-import CTableEdit from "./CTableEdit";
+import CCurrencyTableEdit from "./CCurrenyTableEdit";
+
+
+
+
 
 function AMiddleBar() {
   return (
     <>
       <Box flex={4} padding={2}>
-        <BCurrencyExchangeRate />
+        {/* <BCurrencyExchangeRate /> */}
+        <CCurrencyTableEdit/>
+        
       </Box>
     </>
   );

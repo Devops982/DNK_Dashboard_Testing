@@ -3,40 +3,21 @@ import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
-import MuiTableHead from "@material-ui/core/TableHead";
-// import TableHead from "@mui/material/TableHead";
+import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { Typography } from "@mui/material";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import EditIcon from "@mui/icons-material/Edit";
-import { makeStyles, withStyles } from "@material-ui/core/styles";
 
 
 
-const useStyles = makeStyles({
-  table: {
-    minWidth: 60,
-  },
-});
-
-const TableHead = withStyles((theme) => ({
-  root: {
-    backgroundColor: "white",
-  },
-}))(MuiTableHead);
-
-const TableHeaderCell = withStyles((theme) => ({
-  root: {
-    color: "white",
-  },
-}))(TableCell);
 
 /*Function Starts Here*/
 
 function BCurrencyExchangeRate() {
-  const classes = useStyles();
+  
   var axios = require("axios");
   var qs = require("qs");
   var data = qs.stringify({});
@@ -69,7 +50,7 @@ function BCurrencyExchangeRate() {
         </Typography>
       </Paper>
       <TableContainer component={Paper}>
-        <Table className={classes.table} aria-label="simple table">
+        <Table  aria-label="simple table">
           <TableHead>
             <TableRow>
               <TableCell>Curreny ID</TableCell>
