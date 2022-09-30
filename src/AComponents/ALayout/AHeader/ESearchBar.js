@@ -3,7 +3,8 @@ import styled from "@emotion/styled";
 import { InputBase } from "@mui/material";
 
 const Search = styled("div")(({ theme }) => ({
-  backgroundColor: "white",
+  backgroundColor: "ash",
+  border:"black",
   padding: "0 10px",
   borderRadius: "10px",
   width: "40%",

@@ -1,11 +1,12 @@
 import React from "react";
 import Badge from "@mui/material/Badge";
-import NotificationsIcon from "@mui/icons-material/Notifications";
+// import NotificationsIcon from "@mui/icons-material/Notifications";
+import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
 
 function BNotification() {
   return (
     <Badge badgeContent={4} color="primary">
-      <NotificationsIcon />
+      <NotificationsNoneOutlinedIcon color="error"/>
     </Badge>
   );
 }
