@@ -5,7 +5,7 @@ import BSideBarLists from "./BSideBarLists";
 function ASidebar() {
   return (
     <>
-      <Box bgcolor="white" flex={1} padding={2}>
+      <Box bgcolor="white" flex={0.5} padding={2}>
         <BSideBarLists />
       </Box>
     </>

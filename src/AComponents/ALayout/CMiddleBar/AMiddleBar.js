@@ -10,7 +10,7 @@ import CCurrencyTableEdit from "./CCurrenyTableEdit";
 function AMiddleBar() {
   return (
     <>
-      <Box flex={4} padding={2}>
+      <Box flex={3} padding={2}>
         {/* <BCurrencyExchangeRate /> */}
         <CCurrencyTableEdit/>
         
