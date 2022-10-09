@@ -1,7 +1,6 @@
 import { Box } from "@mui/material";
 import React from "react";
-import BCurrencyExchangeRate from "./BCurrencyExchangeRate";
-import CCurrencyTableEdit from "./CCurrenyTableEdit";
+import BCurrencyDataGrid from "./BCurrencyDataGrid";
 
 
 
@@ -11,9 +10,8 @@ function AMiddleBar() {
   return (
     <>
       <Box flex={3} padding={2}>
-        {/* <BCurrencyExchangeRate /> */}
-        <CCurrencyTableEdit/>
-        
+      
+        <BCurrencyDataGrid/>
       </Box>
     </>
   );

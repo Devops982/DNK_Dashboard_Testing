@@ -6,7 +6,7 @@ import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNone
 function BNotification() {
   return (
     <Badge badgeContent={4} color="primary">
-      <NotificationsNoneOutlinedIcon color="error"/>
+      <NotificationsNoneOutlinedIcon color="white"/>
     </Badge>
   );
 }

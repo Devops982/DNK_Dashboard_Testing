@@ -6,7 +6,7 @@ import MailOutlineIcon from '@mui/icons-material/MailOutline';
 function CMessages() {
   return (
     <Badge badgeContent={4} color="error">
-      <MailOutlineIcon color="error"/>
+      <MailOutlineIcon color="white"/>
     </Badge>
   );
 }
