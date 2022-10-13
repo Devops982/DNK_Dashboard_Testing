@@ -21,7 +21,7 @@ const StyledToolBar = styled(Toolbar)({
 
 export default function AHeader() {
   return (
-    <AppBar position="sticky" sx={{ bgcolor: "#191970" }}>
+    <AppBar position="sticky" sx={{ bgcolor: "#383961" }}>
       <StyledToolBar>
         <Typography variant="h6" style={{color: 'White'}}>India Post</Typography>
         <ESearchBar />

@@ -1,131 +1,138 @@
-import React, {useEffect,useState} from 'react';
-import Box from '@mui/material/Box';
-import { DataGrid, GridCellParams, useGridApiRef } from '@mui/x-data-grid';
+import React, {useState,useEffect} from 'react';
 import axios from 'axios';
-import { v4 } from "uuid";
-
-import moment from "moment";
+import { DataGrid } from '@mui/x-data-grid';
+import { v4 } from 'uuid';
+import moment from 'moment/moment';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import { Box } from '@mui/system';
+import { Stack } from '@mui/material';
 
 function BCurrencyDataGrid() {
-    const curUrl = "https://gateway.cept.gov.in/currency/getexchangerates/0";
+        /* Defining Headers for Axios*/
 
-    var config = {
- 
-        headers: {
-          "x-request-id": v4(),
-          "request-date": moment().toISOString(true),
-        },
-    
-      };
+const ExchangeRateURL =  "https://gateway.cept.gov.in/currency/getexchangerates/0";
+var config = {
+                headers: {
+                         "x-request-id": v4(),
+                        "request-date":moment().toISOString(true),
+                    },
+             }  
 
+/* Declaring and Initializing Currency Variable using 
+useState*/
+
+const [currencyArray, setcurrencyArray] = useState([])
+
+/* Calling API Values using axios and 
+rendering on page loading using useEffect*/
+        const FetchCall=()=>{
+        axios.get(ExchangeRateURL,config)
+        .then(function(res){
+        console.log(res.data)
+        setcurrencyArray(res.data)
+        })
+        }
+
+        useEffect(() => {
+        FetchCall();
+        }, [])
+ /* Handler for getting Selected currency value
+from drop down and displaying in the input text box*/
+const [selectedCurrency, setselectedCurrency] = useState("")
+const [txtVal, setTxtVal] = useState("")
+const [currencyid, setcurrencyid] = useState("")
+const handleChange = (event) => {       
+   setselectedCurrency(event.target.value);
+
+   var val1 = currencyArray.filter((item) => item.id === event.target.value)
    
-
-   const [tblData, setTblData] = useState([])
+   console.log(val1)
     
-const call1 =()=>{
-  axios.get(curUrl,config)
-  .then(function(res){          
-      setTblData(res.data);
-  })
+   setTxtVal(val1[0].exchangerate);
+   setcurrencyid(val1[0].id)
+    
+ };
+/* Handler for updating edited ExchangeRate*/
+
+const updateExchangeRate=()=>{
+   const updateApiUrl = `https://rictapi.cept.gov.in/currency/update/${currencyid}`
+   const updateData = {
+       "exchangerate":txtVal,
+       "updatedat" : moment().toISOString(true)  
+     }
+    axios.put(updateApiUrl,updateData,config) 
+    .then(function(res){
+       alert(res.data.message);
+       FetchCall();
+    })
+   alert ("Updated");
 }
-
-      useEffect(() => {  
-        call1();
-         }, [])
-
-
-  
-  
-
-const putApi = (params) =>{
-
- 
-  console.log(exrate)
-  console.log(params)
-  
-  const updtUrl = `https://rictapi.cept.gov.in/currency/update/${params.row.id}`
-  const updtData = {
-    "exchangerate":exrate,
-    "updatedat" : moment().toISOString(true)
-    
-  
-  }
-
-  axios.put(updtUrl,updtData,config)
-  .then(function(res){
-    call1();
-    alert(res.data.message);
-    console.log(params.row)
-    
-  })
-  
-}
-        let exrate
-
-       
-      
-         const columns = [
-            { field: 'currency', headerName: 'CurrencyName', width: 250, editable: false },
-            { field: 'isocode', headerName: 'Currency ISO Code',width: 180,  editable: false },
-            {
-              field: 'exchangerate',
-              headerName: 'Exchange Rate',
-              valueFormatter: ({ value }) => currencyFormatter.format(value),
-              type: 'number',
-              width: 350,
-              editable: true,
-              preProcessEditCellProps: (params)=>{              
-                console.log(params.props)                 
-                  exrate = params.props.value                 
-                    
-              }
-                    
-              
-              
-                                         
-                },
-            {
-              field: 'updatedat',
-              headerName: 'Last Updated',
-              type: 'dateTime',
-              width: 220,
-              editable: false,
+    const columns = [
+        { field: 'currency', headerName: 'CurrencyName', width: 250, editable: false },
+        { field: 'isocode', headerName: 'Currency ISO Code',width: 180,  editable: false },
+        {
+          field: 'exchangerate',
+          headerName: 'Exchange Rate',
+          valueFormatter: ({ value }) => currencyFormatter.format(value),
+          type: 'number',
+          width: 350,
+          editable: true,                            
             },
-            {
-              field: 'actions',
-              headerName: 'Actions',
-              width: 220,
-              editable: false,
-                            
-            },
-          ];
-
-          const currencyFormatter = new Intl.NumberFormat('en-US', {
-            style: 'currency',
-            currency: 'INR',
-          });
-         
-
-  return (
-    <Box
-      sx={{
-        height: 800,
-        width: '100%',
-        '& .MuiDataGrid-cell--editable': {
-          bgcolor: (theme) =>
-            theme.palette.mode === 'dark' ? '#376331' : 'rgb(217 243 190)',
+        {
+          field: 'updatedat',
+          headerName: 'Last Updated',
+          type: 'dateTime',
+          width: 220,
+          editable: false,
         },
-      }}
-    >
-      <DataGrid
-        rows={tblData}
-        columns={columns}
-        density= 	'standard'
-         onCellEditStop={putApi}
-        experimentalFeatures={{ newEditingApi: true }}           
-                    />
-             </Box>
- )
+             ];
+
+      const currencyFormatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'INR',
+      });
+  return (
+    <div>
+        <div style={{ height: 400, width: '100%',p: 2 }}>
+
+        <Stack direction="row" spacing={2} style={{padding:'1em'}}>   
+        <Stack >
+        <TextField
+        select
+        value={selectedCurrency}
+        label="Select Currency"
+        onChange={handleChange}        
+    
+    style={{width: 220}}
+        >
+        {currencyArray.map((item)=>(
+        <MenuItem value={item.id}>{item.currency}</MenuItem>))}
+        </TextField>
+        </Stack>
+        <Stack>
+        <TextField id="outlined-basic" onChange={(e)=>setTxtVal(e.target.value)} value={txtVal} variant="outlined" />  
+        </Stack>
+        <Stack>
+        <Button onClick={updateExchangeRate} variant="contained" >
+        Update Currency Rate 
+        </Button> 
+        </Stack>  
+        </Stack> 
+        <DataGrid
+            rows={currencyArray}
+            columns={columns}
+            sx={{
+                bgcolor: 'White',
+               }}   />
+       
+        </div>
+        </div>
+  )
 }
 
 export default BCurrencyDataGrid
