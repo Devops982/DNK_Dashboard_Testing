@@ -15,7 +15,7 @@ import { Stack } from '@mui/material';
 function BCurrencyDataGrid() {
         /* Defining Headers for Axios*/
 
-const ExchangeRateURL =  "http://apiservices.cept.gov.in/currency/getexchangerates/0";
+const ExchangeRateURL =  "https://apiservices.cept.gov.in/currency/getexchangerates/0";
 var config = {
                 headers: {
                          "x-request-id": v4(),
