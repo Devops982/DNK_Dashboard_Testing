@@ -15,7 +15,7 @@ import { Stack } from '@mui/material';
 function BCurrencyDataGrid() {
         /* Defining Headers for Axios*/
 
-const ExchangeRateURL =  "https://gateway.cept.gov.in/currency/getexchangerates/0";
+const ExchangeRateURL =  "http://apiservices.cept.gov.in/currency/getexchangerates/0";
 var config = {
                 headers: {
                          "x-request-id": v4(),
@@ -60,7 +60,7 @@ const handleChange = (event) => {
 /* Handler for updating edited ExchangeRate*/
 
 const updateExchangeRate=()=>{
-   const updateApiUrl = `https://rictapi.cept.gov.in/currency/update/${currencyid}`
+   const updateApiUrl = `http://apiservices.cept.gov.in/currency/update/${currencyid}`
    const updateData = {
        "exchangerate":txtVal,
        "updatedat" : moment().toISOString(true)  
