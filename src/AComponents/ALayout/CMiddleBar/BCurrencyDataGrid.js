@@ -60,7 +60,7 @@ const handleChange = (event) => {
 /* Handler for updating edited ExchangeRate*/
 
 const updateExchangeRate=()=>{
-   const updateApiUrl = `http://apiservices.cept.gov.in/currency/update/${currencyid}`
+   const updateApiUrl = `https://apiservices.cept.gov.in/currency/update/${currencyid}`
    const updateData = {
        "exchangerate":txtVal,
        "updatedat" : moment().toISOString(true)  
